@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" client="site" method="upgrade">
+	<name>[FL] JoomShopping Categories</name> 
+	<author>Vitaliy Moskalyuk</author>
+	<creationDate>June 2019</creationDate>
+	<copyright>(C) 2016 Vitaliy Moskalyuk. All rights reserved.</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>info@2sweb.ru</authorEmail>
+	<authorUrl>2sweb.ru</authorUrl>
+	<version>1.0.0</version>
+	<description>Displays JoomShopping categories.</description>
+	
+	<files>
+		<filename module="mod_fljshoppingcats">mod_fljshoppingcats.php</filename>
+		<filename>helper.php</filename>
+		<folder>tmpl</folder>
+	</files>
+	
+	<config>
+	
+		<fields name="params">
+		
+			<fieldset name="basic">
+				
+				<field
+					name="title"
+					label="JGLOBAL_TITLE"
+					type="text"
+				/>
+				
+				<field
+					name="title_link"
+					label="title_link"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="0"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				
+				<field
+					name="root"
+					label="JGLOBAL_FIELD_CATEGORIES_CHOOSE_CATEGORY_LABEL"
+					description="JGLOBAL_FIELD_CATEGORIES_CHOOSE_CATEGORY_DESC"
+					type="sql"
+					default="0"
+					query="SELECT category_id AS value, `name_ru-RU` AS title FROM #__jshopping_categories WHERE category_publish=1 ORDER BY category_parent_id, ordering"
+					key_field="value"
+					value_field="title"
+				>
+					<option value="0">JNO</option>
+				</field>
+				
+				<field
+					name="order"
+					label="JGLOBAL_FIELD_FIELD_ORDERING_LABEL"
+					description="JGLOBAL_FIELD_FIELD_ORDERING_DESC"
+					type="list"
+					default="name"
+				>
+					<option value="id">JGLOBAL_FIELD_ID_LABEL</option>
+					<option value="name">JGLOBAL_TITLE</option>
+					<option value="order">JGLOBAL_FIELD_FIELD_ORDERING_LABEL</option>
+				</field>
+				
+				<field
+					name="direction"
+					label="JGLOBAL_ORDER_DIRECTION_LABEL"
+					type="list"
+					default="asc"
+				>
+					<option value="asc">JGLOBAL_ORDER_ASCENDING</option>
+					<option value="desc">JGLOBAL_ORDER_DESCENDING</option>
+				</field>
+			
+				<field
+					name="show_image"
+					label="JGLOBAL_SHOW_CATEGORY_IMAGE_LABEL"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="0"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				
+				<field
+					name="maxlevel"
+					label="JGLOBAL_SHOW_SUBCATEGORY_CONTENT_LABEL"
+					type="list"
+					default="-1"
+				>
+					<option value="0">JNONE</option>
+					<option value="-1">JALL</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</field>
+				
+				<field
+					name="layout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+					type="modulelayout"
+					default="_:default"
+				/>
+				
+				<field
+					name="moduleclass_sfx"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+					type="text"
+				/>
+				
+			</fieldset>
+			
+		</fields>
+		
+	</config>
+</extension>
